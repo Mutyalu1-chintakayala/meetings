@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ECE Department</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+body {
+      margin: 0;
+      padding: 0;
+      background-image: url("ece.jpg"); /* Place this image in the same folder as this HTML file */
+      background-size: cover;         /* Cover entire screen */
+      background-position: center;    /* Center the image */
+      background-repeat: no-repeat;   /* Prevent repeating */
+      background-attachment: fixed;   /* Stays fixed on scroll */
+      image-rendering: auto;          /* Ensure best clarity */
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      font-size: 24px;
+      background-color: rgba(0, 0, 0, 0.5); /* Optional for better text visibility */
+    }
+
+    body {
+      margin: 0;
+      padding: 40px;
+      min-height: 100vh;
+      background: url('ece.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #003f7d;
+      color: white;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 16px;
+      background: #0059b3;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+
+    .navbar a:hover {
+      background: #007bff;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #003f7d;
+      margin-bottom: 25px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    textarea,
+    input[type="text"],
+    input[type="date"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #f9fbfd;
+    }
+
+    #saveBtn {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 220px;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 30px;
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #saveBtn:hover {
+      background: #0056b3;
+    }
+
+    #toggleNotesBtn {
+      position: fixed;
+      top: 95px;
+      right: 20px;
+      background: #343a40;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      z-index: 1100;
+      transition: background 0.3s;
+    }
+
+    #toggleNotesBtn:hover {
+      background: #1d2124;
+    }
+
+    #notesSection {
+      position: fixed;
+      top: 150px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      z-index: 1050;
+      display: none;
+    }
+
+    #notesList li {
+      margin-bottom: 10px;
+      list-style: none;
+      padding: 10px;
+      background: #eef3fa;
+      border-left: 4px solid #007bff;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+      }
+
+      #notesSection {
+        width: 90%;
+        right: 5%;
+      }
+
+      #saveBtn {
+        width: 90%;
+      }
+
+      #toggleNotesBtn {
+        top: 80px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <a href="mechlogin.html">MECH</a>
+    <a href="cselogin.html">CSE</a>
+    <a href="civillogin.html">CIVIL</a>
+    <a href="ecelogin.html">ECE</a>
+    <a href="chemlogin.html">CHEM</a>
+    <a href="eeelogin.html">EEE</a>
+    <a href="itlogin.html">IT</a>
+    <a href="csdlogin.html">CSD</a>
+    <a href="csmlogin.html">CSM</a>
+  </div>
+
+  <!-- Main Form Section -->
+  <div class="container">
+    <h1>Welcome to ECE Department</h1>
+    <form id="meetingForm">
+      <input type="hidden" name="department" value="ECE" />
+
+      <label>Date:</label>
+      <input type="date" name="date" required />
+
+      <label>Type of Meeting:</label>
+      <input type="text" name="typeofmeeting" required />
+
+      <label>Agenda:</label>
+      <input type="text" name="agenda" required />
+
+      <label>Attendees:</label>
+      <input type="text" name="attendees" required />
+
+      <label>Decision:</label>
+      <textarea name="decision" rows="2" required></textarea>
+
+      <!-- ✔ Corrected button, now inside the form -->
+      <button type="submit" id="saveBtn">💾 Save Details</button>
+    </form>
+  </div>
+
+   <button id="toggleNotesBtn">📋 Past Records</button>
+  <div id="notesSection">
+    <h3 style="margin-bottom: 10px;">Saved meetings</h3>
+    <ul id="notesList"></ul>
+  </div>
+
+  <!-- JS Script -->
+  <script>
+  const department = "ECE"; 
+  const saveBtn = document.getElementById('saveBtn');
+  const toggleNotesBtn = document.getElementById('toggleNotesBtn');
+  const notesList = document.getElementById('notesList');
+  const notesSection = document.getElementById('notesSection');
+  const meetingForm = document.getElementById('meetingForm');
+  let notesVisible = false;
+
+  const searchContainer = document.createElement('div');
+  searchContainer.style.marginBottom = '15px';
+  searchContainer.style.display = 'flex';
+  searchContainer.style.gap = '10px';
+
+  const searchInput = document.createElement('input');
+  searchInput.type = 'text';
+  searchInput.id = 'meetingSearch';
+  searchInput.placeholder = 'Search meeting type (e.g., CR, faculty)';
+  searchInput.style.flex = '1';
+  searchInput.style.padding = '8px';
+  searchInput.style.borderRadius = '4px';
+  searchInput.style.border = '1px solid #ccc';
+
+  const searchBtn = document.createElement('button');
+  searchBtn.textContent = 'Search';
+  searchBtn.style.padding = '8px 16px';
+  searchBtn.style.background = '#007bff';
+  searchBtn.style.color = 'white';
+  searchBtn.style.border = 'none';
+  searchBtn.style.borderRadius = '4px';
+  searchBtn.style.cursor = 'pointer';
+
+  searchContainer.appendChild(searchInput);
+  searchContainer.appendChild(searchBtn);
+  notesSection.insertBefore(searchContainer, notesList);
+
+  async function fetchMeetings(searchTerm = '') {
+    try {
+      const url = `/get-records?department=${department}${searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : ''}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Failed to fetch meetings');
+      const notes = await res.json();
+      notesList.innerHTML = '';
+
+      const filteredNotes = searchTerm 
+        ? notes.filter(note => note.typeofmeeting.toLowerCase().includes(searchTerm.toLowerCase()))
+        : notes;
+
+      const sortedNotes = filteredNotes.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      if (sortedNotes.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = searchTerm 
+          ? `No "${searchTerm}" meetings found` 
+          : 'No meetings found';
+        notesList.appendChild(li);
+        return;
+      }
+
+      sortedNotes.forEach(note => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <strong>Date:</strong> ${note.date}<br>
+          <strong>Type:</strong> ${note.typeofmeeting}<br>
+          <strong>Agenda:</strong> ${note.agenda}<br>
+          <strong>Attendees:</strong> ${note.attendees}<br>
+          <strong>Decision:</strong> ${note.decision}
+        `;
+        notesList.appendChild(li);
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      notesList.innerHTML = '<li>Error loading meetings</li>';
+    }
+  }
+
+  saveBtn.addEventListener('click', async () => {
+    const formData = new FormData(meetingForm);
+    const data = Object.fromEntries(formData.entries());
+    data.department = department; // Include department info
+
+    try {
+      const response = await fetch('/submit-meeting', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        alert("Meeting saved successfully!");
+        meetingForm.reset();
+        if (notesVisible) await fetchMeetings(searchInput.value);
+      } else {
+        throw new Error('Failed to save meeting');
+      }
+    } catch (error) {
+      alert("Failed to save meeting.");
+      console.error('Error:', error);
+    }
+  });
+
+  toggleNotesBtn.addEventListener('click', async () => {
+    notesVisible = !notesVisible;
+    notesSection.style.display = notesVisible ? 'block' : 'none';
+    toggleNotesBtn.textContent = notesVisible ? '❌ Hide Records' : '📋 Past Records';
+    if (notesVisible) await fetchMeetings(searchInput.value);
+  });
+
+  searchBtn.addEventListener('click', async () => {
+    await fetchMeetings(searchInput.value);
+  });
+
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      fetchMeetings(searchInput.value);
+    }
+  });
+
+  if (notesVisible) fetchMeetings();
+</script>
+
+</body>
+</html>

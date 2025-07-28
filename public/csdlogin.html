@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSD Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('csd1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.6);
+      width: 100%;
+      max-width: 420px;
+      color: white;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 26px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 12px 0;
+      border-radius: 10px;
+      border: none;
+      font-size: 15px;
+      background-color: #f1f1f1;
+      color: #000;
+    }
+    input:focus {
+      outline: none;
+      background-color: #fff;
+      box-shadow: 0 0 5px #28a745;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #007bff;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .links {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .links a, .links button {
+      display: block;
+      margin-top: 10px;
+      color: #00c3ff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: 14px;
+    }
+    .links a:hover, .links button:hover {
+      color: #ffd700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>CSD Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="links">
+      <button onclick="forgotPassword()">Forgot Password?</button>
+      <a href="csdsignup.html">New User? Sign Up</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const inputUser = document.getElementById('username').value;
+      const inputPass = document.getElementById('password').value;
+
+      const storedUser = JSON.parse(localStorage.getItem('csdUser'));
+
+      if (storedUser && storedUser.username === inputUser && storedUser.password === inputPass) {
+        alert('Login successful!');
+        window.location.href = 'csd.html';
+      } else {
+        alert('Invalid credentials!');
+      }
+    });
+
+    function forgotPassword() {
+      const email = prompt("Enter your registered email:");
+      const storedUser = JSON.parse(localStorage.getItem('mechUser'));
+
+      if (storedUser && storedUser.email === email) {
+        alert("Your password is: " + storedUser.password);
+      } else {
+        alert("No account found with this email.");
+      }
+    }
+  </script>
+</body>
+</html>

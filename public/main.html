@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to ANITS</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("anitsimg.jpg"); /* Place this image in the same folder as this HTML file */
+      background-size: cover;         /* Cover entire screen */
+      background-position: center;    /* Center the image */
+      background-repeat: no-repeat;   /* Prevent repeating */
+      background-attachment: fixed;   /* Stays fixed on scroll */
+      image-rendering: auto;          /* Ensure best clarity */
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      font-size: 24px;
+      background-color: rgba(0, 0, 0, 0.5); /* Optional for better text visibility */
+    }
+
+    body {
+      margin: 0;
+      padding: 40px;
+      min-height: 100vh;
+      background: url('anitsimg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+   .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #0c3c78;
+      margin-bottom: 10px;
+    }
+
+    .note {
+      color: #666;
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      padding: 10px;
+    }
+
+    .card {
+      background: #ffffffcc;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      padding: 30px 10px;
+      text-decoration: none;
+      color: #0c3c78;
+      font-size: 1.2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card span {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 24px rgba(0, 0, 0, 0.15);
+      background: #e7f0ff;
+      color: #1e4da0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to ANITS</h1>
+    <p class="note">Click on a department to explore more</p>
+    <div class="grid">
+      <a href="mechsignup.html" class="card">MECH<br><span>Engineering</span></a>
+      <a href="csesignup.html" class="card">CSE<br><span>Engineering</span></a>
+      <a href="civilsignup.html" class="card">CIVIL<br><span>Engineering</span></a>
+      <a href="ecesignup.html" class="card">ECE<br><span>Engineering</span></a>
+      <a href="chemsignup.html" class="card">CHEM<br><span>Engineering</span></a>
+      <a href="eeesignup.html" class="card">EEE<br><span>Engineering</span></a>
+      <a href="itsignup.html" class="card">IT<br><span>Engineering</span></a>
+      <a href="csdsignup.html" class="card">CSD<br><span>Engineering</span></a>
+      <a href="csmsignup.html" class="card">CSM<br><span>Engineering</span></a>
+    </div>
+  </div>
+</body>
+</html>
