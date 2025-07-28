@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>CSM Department</title>
+  <title>CSM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     * {
@@ -12,10 +12,10 @@
       font-family: 'Segoe UI', sans-serif;
     }
 
-    body {
+   body {
       margin: 0;
       padding: 0;
-      background-image: url("chem.jpg"); /* Place this image in the same folder as this HTML file */
+      background-image: url("csm1.jpeg"); /* Place this image in the same folder as this HTML file */
       background-size: cover;         /* Cover entire screen */
       background-position: center;    /* Center the image */
       background-repeat: no-repeat;   /* Prevent repeating */
@@ -37,7 +37,7 @@
       margin: 0;
       padding: 40px;
       min-height: 100vh;
-      background: url('csm1.jpeg') no-repeat center center fixed;
+      background: url('csm2.jpeg') no-repeat center center fixed;
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -209,6 +209,8 @@
   <!-- Main Form Section -->
   <div class="container">
     <h1>Welcome to CSM Department</h1>
+
+    <!-- ↓↓↓ Move the button *inside* the form ↓↓↓ -->
     <form id="meetingForm">
       <input type="hidden" name="department" value="CSM" />
 
@@ -232,7 +234,7 @@
     </form>
   </div>
 
-   <button id="toggleNotesBtn">📋 Past Records</button>
+   <button id="toggleNotesBtn">📋 Past Records</button><br>
   <div id="notesSection">
     <h3 style="margin-bottom: 10px;">Saved meetings</h3>
     <ul id="notesList"></ul>
@@ -241,13 +243,14 @@
   <!-- JS Script -->
   <script>
   const department = "CSM";
+  const notesVisible = false;
   const saveBtn = document.getElementById('saveBtn');
   const toggleNotesBtn = document.getElementById('toggleNotesBtn');
   const notesList = document.getElementById('notesList');
   const notesSection = document.getElementById('notesSection');
   const meetingForm = document.getElementById('meetingForm');
-  let notesVisible = false;
 
+  // SEARCH BAR
   const searchContainer = document.createElement('div');
   searchContainer.style.marginBottom = '15px';
   searchContainer.style.display = 'flex';
@@ -275,6 +278,7 @@
   searchContainer.appendChild(searchBtn);
   notesSection.insertBefore(searchContainer, notesList);
 
+  // 🆕 FETCH MEETINGS FUNCTION
   async function fetchMeetings(searchTerm = '') {
     try {
       const url = `/get-records?department=${department}${searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : ''}`;
@@ -283,13 +287,7 @@
       const notes = await res.json();
       notesList.innerHTML = '';
 
-      const filteredNotes = searchTerm 
-        ? notes.filter(note => note.typeofmeeting.toLowerCase().includes(searchTerm.toLowerCase()))
-        : notes;
-
-      const sortedNotes = filteredNotes.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-      if (sortedNotes.length === 0) {
+      if (notes.length === 0) {
         const li = document.createElement('li');
         li.textContent = searchTerm 
           ? `No "${searchTerm}" meetings found` 
@@ -298,7 +296,7 @@
         return;
       }
 
-      sortedNotes.forEach(note => {
+      notes.forEach(note => {
         const li = document.createElement('li');
         li.innerHTML = `
           <strong>Date:</strong> ${note.date}<br>
@@ -315,24 +313,28 @@
     }
   }
 
-  saveBtn.addEventListener('click', async () => {
+  // 🆕 SUBMIT HANDLER
+  meetingForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
     const formData = new FormData(meetingForm);
     const data = Object.fromEntries(formData.entries());
-    data.department = department; // Include department info
+    data.department = department;
 
     try {
       const response = await fetch('/submit-meeting', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
         alert("Meeting saved successfully!");
         meetingForm.reset();
-        if (notesVisible) await fetchMeetings(searchInput.value);
+        fetchMeetings(searchInput.value);
       } else {
-        throw new Error('Failed to save meeting');
+        const result = await response.json();
+        alert("Failed to save meeting: " + result.error || "Unknown error");
       }
     } catch (error) {
       alert("Failed to save meeting.");
@@ -340,24 +342,42 @@
     }
   });
 
-  toggleNotesBtn.addEventListener('click', async () => {
-    notesVisible = !notesVisible;
-    notesSection.style.display = notesVisible ? 'block' : 'none';
-    toggleNotesBtn.textContent = notesVisible ? '❌ Hide Records' : '📋 Past Records';
-    if (notesVisible) await fetchMeetings(searchInput.value);
-  });
-
-  searchBtn.addEventListener('click', async () => {
-    await fetchMeetings(searchInput.value);
-  });
-
-  searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
+  // 🆕 TOGGLE BUTTON
+  toggleNotesBtn.addEventListener('click', () => {
+    notesSection.style.display = notesSection.style.display === 'block' ? 'none' : 'block';
+    toggleNotesBtn.textContent = notesSection.style.display === 'block' ? '❌ Hide Records' : '📋 Past Records';
+    if (notesSection.style.display === 'block') {
       fetchMeetings(searchInput.value);
     }
   });
 
-  if (notesVisible) fetchMeetings();
+  searchBtn.addEventListener('click', () => fetchMeetings(searchInput.value));
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') fetchMeetings(searchInput.value);
+  });
 </script>
+
 </body>
-</html>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
