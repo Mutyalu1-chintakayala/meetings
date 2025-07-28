@@ -8,7 +8,7 @@ const Note = require('./models/Notes');
 const app = express();
 const PORT = 3000;
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/meetings', {
+mongoose.connect('mongodb+srv://chintakayalamutyalu:Demudu%4021@cluster0.mban80h.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
