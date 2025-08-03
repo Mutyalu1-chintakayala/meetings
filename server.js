@@ -42,18 +42,33 @@ app.post('/index', async (req, res) => {
   }
 });
 
+// app.post('/login', async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+//     const user = await User.findOne({ email });
+//     if (!user || password !== user.password) {
+//       return res.status(401).json({ error: 'Invalid credentials' });
+//     }
+//     res.redirect('/main.html');
+//   } catch (err) {
+//     res.status(500).json({ error: 'Login failed' });
+//   }
+// });
 app.post('/login', async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
-    if (!user || password !== user.password) {
+    const { email, password, department } = req.body;
+    const user = await User.findOne({ email, department });
+
+    if (!user || user.password !== password) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
-    res.redirect('/main.html');
+
+    res.redirect(`/${department.toLowerCase()}.html`);
   } catch (err) {
     res.status(500).json({ error: 'Login failed' });
   }
 });
+
 
 // Handle Meeting Submission
 app.post('/submit-meeting', async (req, res) => {
