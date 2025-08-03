@@ -80,6 +80,23 @@ app.post('/submit-meeting', async (req, res) => {
     res.status(500).json({ error: 'Error saving meeting' });
   }
 });
+// Forgot Password - Get password by email
+app.get('/get-password', async (req, res) => {
+  try {
+    const { email } = req.query;
+    const user = await User.findOne({ email });
+
+    if (user) {
+      res.json({ password: user.password });
+    } else {
+      res.status(404).json({ error: 'No user found with this email' });
+    }
+  } catch (err) {
+    console.error('Error fetching password:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 
 
 // Get meeting records with search functionality
