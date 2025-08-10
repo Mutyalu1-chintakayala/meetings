@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: url('csm1.jpeg') no-repeat center center fixed;
+      background: url('csm2.jpeg') no-repeat center center fixed;
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -81,7 +80,7 @@
 </head>
 <body>
   <div class="container">
-    <h2>csm Login</h2>
+    <h2>CSM Login</h2>
     <form id="loginForm">
       <input type="text" id="username" placeholder="Username" required />
       <input type="password" id="password" placeholder="Password" required />
@@ -100,7 +99,7 @@
       const inputUser = document.getElementById('username').value;
       const inputPass = document.getElementById('password').value;
 
-      const storedUser = JSON.parse(localStorage.getItem('csmUser'));
+      const storedUser = JSON.parse(localStorage.getItem('csdUser'));
 
       if (storedUser && storedUser.username === inputUser && storedUser.password === inputPass) {
         alert('Login successful!');
