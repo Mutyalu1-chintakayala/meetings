@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: url('csm2.jpeg') no-repeat center center fixed;
+      background: url('csm1.jpeg') no-repeat center center fixed;
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -93,7 +93,7 @@
       const password = document.getElementById('password').value;
 
       const user = { name, username, email, phone, password };
-      localStorage.setItem('mechUser', JSON.stringify(user));
+      localStorage.setItem('csmUser', JSON.stringify(user));
 
       alert('Signup successful! Now login.');
       window.location.href = 'csmlogin.html';
