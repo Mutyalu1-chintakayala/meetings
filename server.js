@@ -175,8 +175,8 @@ app.post('/index', async (req, res) => {
 // Updated Login Route (No department check)
 app.post('/login', async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const { email, password,username } = req.body;
+    const user = await User.findOne({ email,username});
 
     if (!user || user.password !== password) {
       return res.status(401).json({ error: 'Invalid credentials' });
@@ -235,13 +235,14 @@ app.get('/get-records', async (req, res) => {
       .limit(100); // Limit results for performance
     
     res.json(records);
-  } catch (err) {
+  } catch (err) { 
     console.error('Error fetching records:', err);
     res.status(500).json({ error: 'Error fetching records' });
   }
 });
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
 
 
 
