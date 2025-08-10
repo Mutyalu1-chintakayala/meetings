@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: url('mech0.jpeg') no-repeat center center fixed;
+      background: url('csd1.jpg') no-repeat center center fixed;
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -79,7 +79,7 @@
 
     <!-- ✅ Login link section -->
     <div class="login-link">
-      Already have an account? <a href="csdlogin.html">Login here</a>
+      Already have an account? <a href="civillogin.html">Login here</a>
     </div>
   </div>
 
@@ -93,7 +93,7 @@
       const password = document.getElementById('password').value;
 
       const user = { name, username, email, phone, password };
-      localStorage.setItem('mechUser', JSON.stringify(user));
+      localStorage.setItem('csdUser', JSON.stringify(user));
 
       alert('Signup successful! Now login.');
       window.location.href = 'csdlogin.html';
