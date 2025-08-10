@@ -233,7 +233,7 @@
 
     <div class="links">
       <button onclick="forgotPassword()">Forgot Password?</button>
-      <a href="chemsignup.html">New User? Sign Up</a>
+      <a href="csdsignup.html">New User? Sign Up</a>
     </div>
   </div>
 
@@ -243,11 +243,11 @@
       const inputUser = document.getElementById('username').value;
       const inputPass = document.getElementById('password').value;
 
-      const storedUser = JSON.parse(localStorage.getItem('mechUser'));
+      const storedUser = JSON.parse(localStorage.getItem('csdUser'));
 
       if (storedUser && storedUser.username === inputUser && storedUser.password === inputPass) {
         alert('Login successful!');
-        window.location.href = 'chem.html';
+        window.location.href = 'csd.html';
       } else {
         alert('Invalid credentials!');
       }
@@ -255,7 +255,7 @@
 
     function forgotPassword() {
       const email = prompt("Enter your registered email:");
-      const storedUser = JSON.parse(localStorage.getItem('chemhUser'));
+      const storedUser = JSON.parse(localStorage.getItem('csdUser'));
 
       if (storedUser && storedUser.email === email) {
         alert("Your password is: " + storedUser.password);
@@ -266,3 +266,4 @@
   </script>
 </body>
 </html>
+
