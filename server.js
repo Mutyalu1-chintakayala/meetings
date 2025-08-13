@@ -42,18 +42,18 @@
 //   }
 // });
 
-// // app.post('/login', async (req, res) => {
-// //   try {
-// //     const { email, password } = req.body;
-// //     const user = await User.findOne({ email });
-// //     if (!user || password !== user.password) {
-// //       return res.status(401).json({ error: 'Invalid credentials' });
-// //     }
-// //     res.redirect('/main.html');
-// //   } catch (err) {
-// //     res.status(500).json({ error: 'Login failed' });
-// //   }
-// // });
+// app.post('/login', async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+//     const user = await User.findOne({ email });
+//     if (!user || password !== user.password) {
+//       return res.status(401).json({ error: 'Invalid credentials' });
+//     }
+//     res.redirect('/main.html');
+//   } catch (err) {
+//     res.status(500).json({ error: 'Login failed' });
+//   }
+// });
 // app.post('/login', async (req, res) => {
 //   try {
 //     const { email, password, department } = req.body;
@@ -175,14 +175,26 @@ app.post('/index', async (req, res) => {
 // Updated Login Route (No department check)
 app.post('/login', async (req, res) => {
   try {
-    const { email, password,username } = req.body;
-    const user = await User.findOne({ email,username});
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user || password !== user.password) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+    res.redirect('/main.html');
+  } catch (err) {
+    res.status(500).json({ error: 'Login failed' });
+  }
+});
+app.post('/login', async (req, res) => {
+  try {
+    const { email, password, department } = req.body;
+    const user = await User.findOne({ email, department });
 
     if (!user || user.password !== password) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    res.redirect('/main.html'); // Redirect to main.html after successful login
+    res.redirect(`/${department.toLowerCase()}.html`);
   } catch (err) {
     res.status(500).json({ error: 'Login failed' });
   }
@@ -242,6 +254,7 @@ app.get('/get-records', async (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
 
 
 
