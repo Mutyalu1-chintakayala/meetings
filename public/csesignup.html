@@ -67,7 +67,7 @@
 </head>
 <body>
   <div class="container">
-    <h2>MECH Signup</h2>
+    <h2>CSE Signup</h2>
     <form id="signupForm">
       <input type="text" id="name" name="name" placeholder="Name" required />
       <input type="text" id="username" name="username" placeholder="Username" required />
@@ -93,7 +93,7 @@
       const password = document.getElementById('password').value;
 
       const user = { name, username, email, phone, password };
-      localStorage.setItem('mechUser', JSON.stringify(user));
+      localStorage.setItem('cseUser', JSON.stringify(user));
 
       alert('Signup successful! Now login.');
       window.location.href = 'cselogin.html';
@@ -101,3 +101,4 @@
   </script>
 </body>
 </html>
+
