@@ -100,7 +100,7 @@
       const inputUser = document.getElementById('username').value;
       const inputPass = document.getElementById('password').value;
 
-      const storedUser = JSON.parse(localStorage.getItem('mechUser'));
+      const storedUser = JSON.parse(localStorage.getItem('eceUser'));
 
       if (storedUser && storedUser.username === inputUser && storedUser.password === inputPass) {
         alert('Login successful!');
@@ -123,3 +123,4 @@
   </script>
 </body>
 </html>
+
